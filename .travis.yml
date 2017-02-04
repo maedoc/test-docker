@@ -1,0 +1,11 @@
+sudo: required
+language: python
+services:
+    - docker
+
+before_install:
+    - docker build -t py36 .
+
+after_success:
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker push maedoc/py36
